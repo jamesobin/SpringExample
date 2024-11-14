@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>사용자 추가</title>
+	</head>
+	<body>
+		<h2>사용자 입력</h2>
+		<label>이름 : </label> <input type="text" id="nameInput"><br>
+		<label>생년월일 : </label> <input type="text" id="birthdayInput"><br>
+		<label>이메일 : </label> <input type="text" id="emailInput"><br>
+		<label>자기소개</label><br>
+		<textarea cols="50" rows="7" id="introduceInput"></textarea><br>
+		<button type="button" id="addBtn">추가</button>
+		
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function() {
+				$("#addBtn").on("click", function() {
+					let name = $("#nameInput").val();
+					let birthday = $("#birthdayInput").val();
+					let email = $("#emailInput").val();
+					let introduce = $("#introduceInput").val();
+					
+					// 유효성 검사!
+					if(name == "") {
+						alert("이름을 입력하세요!!");
+						return;
+					}
+					
+					// 입력된 값으로 /ajax/user/create API를 요청한다.
+				});
+			});
+		</script>
+	</body>
+</html>
