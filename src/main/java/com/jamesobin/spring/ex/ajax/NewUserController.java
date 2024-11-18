@@ -52,4 +52,24 @@ public class NewUserController {
 		return "ajax/userInput";
 	}
 	
+	// email 전달 받고, 이미 추가되 email인지 확인
+	// API
+	@ResponseBody
+	@GetMapping("/duplicate-email")
+	public Map<String, Boolean> isDuplicateEmail(@RequestParam("email") String email) {
+		boolean isDuplicate = userService.isDuplicateEmail(email);
+		
+		// 중복됨 {"isDuplicate":true} 
+		// 중복 안됨 {"isDuplicate":false}
+		Map<String, Boolean> resultMap = new HashMap<>();
+		
+		if(isDuplicate == true) {
+			resultMap.put("isDuplicate", true);
+		} else {
+			resultMap.put("isDuplicate", false);
+		}
+		
+		return resultMap;
+	}
+	
 }
